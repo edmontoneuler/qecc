@@ -1,6 +1,7 @@
 import sys
 import os
-sys.path.insert(0, "/scratch/m/maassenj/cmrudder/bin")
+
+sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
 
 from diamond_struct_makers import make_bulk_Si
 from kpts_makers import make_auto_kpts
@@ -9,7 +10,7 @@ from bash_makers import make_bash_beluga
 
 make_auto_kpts('KPTS', grid = [11,11,11,0,0,0])
 make_bulk_Si('STRUCT')
-make_scf_param('PARAMS', ecutwfc = 60, ecutrho = 240, nat = 2, ntyp =1, nbnd = 16)
+make_scf_param('PARAMS', ecutwfc = 60, ecutrho = 240, nat = 2, ntyp =1, nbnd = 12)
 os.system('cat PARAMS STRUCT KPTS >> scf.in')
 os.system('dos2unix scf.in')
 
