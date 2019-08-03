@@ -71,7 +71,10 @@ def make_bash_beluga(filename, nodes=1, ntasks_per_node=40, time='04:00:00', mai
     f.write('module load quantumespresso/6.4 \n')
     f.write('\n')
 
-    f.write('srun ' + executable + ' < ' + qe_inputfile + ' > ' + qe_outputfile +'\n')
+    if executable == 'bands.x':
+        f.write('srun bands.x -i ' + qe_inputfile + ' > ' + qe_outputfile +'\n')
+    else:
+        f.write('srun ' + executable + ' < ' + qe_inputfile + ' > ' + qe_outputfile +'\n')
     
     f.close()
     
