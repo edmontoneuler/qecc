@@ -4,7 +4,7 @@
 #Must be run in the same folder as bands.dat.gnu (data), 
 #bands.out (location of high symmetry points) and scf.out (Fermi energy)
 #
-#Syntax is python band_plotter.py L '$\Gamma$ K M 'Plot Title'
+#Syntax is python band_plotter.py inputfile material_name
 #
 
 import numpy as np 
