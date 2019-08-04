@@ -4,7 +4,8 @@
 #Must be run in the same folder as bands.dat.gnu (data), 
 #bands.out (location of high symmetry points) and scf.out (Fermi energy)
 #
-#Syntax is python band_plotter.py L '$\Gamma$ K M 'Plot Title'
+#Syntax is python band_plotter.py material_name bz_path
+# e.g      python band_plotter.py Silicon diamond
 #
 
 import numpy as np 
@@ -17,7 +18,6 @@ def get_sym_locs():
     """
     Returns the x-coordinates the high-symmetry points desribing the BZ path
     """
-
     sym_lines = []
     sym_locs = []
     with open('bands.out') as file:
@@ -32,18 +32,14 @@ def get_sym_locs():
     
     return sym_locs
 
-        
-
 def get_fermi_level():
     """
     Returns the Fermi level of the bandstructure as given in in the SCF output file
     """
-    
     with open('scf.out') as file:
         for num, line in enumerate(file,0):
             if 'lowest' in line:
                 fermi_line = num
-                break
 
         file = open('scf.out')
         lines = file.readlines()
@@ -52,13 +48,18 @@ def get_fermi_level():
 
     return fermi_level
     
-
-def plot_bands(datafile,material_name = 'Si', sym_labels= ['W', 'L', '$\Gamma$', 'X', 'W', 'K']):
+def plot_bands(datafile= 'bands.dat.gnu',material_name = 'Si', bz_path = 'diamond'):
 
     sym_locs = get_sym_locs()
     fermi_level = get_fermi_level()
     my_data = np.genfromtxt(datafile)
-    
+    if bz_path == 'diamond':
+        sym_labels = ['W', 'L', '$\Gamma$', 'X', 'W', 'K']
+    else: 
+        print('Bandstructure path not recognized.')
+        print('Omitting high-symmetry point labels.')
+        sym_labels = [' ' for k in range(len(sym_locs))]
+   
     x=[]
     y=[]
 
@@ -77,7 +78,7 @@ def plot_bands(datafile,material_name = 'Si', sym_labels= ['W', 'L', '$\Gamma$',
     plt.show()
 
 if __name__ == "__main__":
-    inputfile = sys.argv[1]
-    material_name = sys.argv[2]
-    plot_bands(inputfile, material_name = material_name)
+    material_name = sys.argv[1]
+    bz_path = sys.argv[2]
+    plot_bands(material_name = material_name, bz_path = bz_path)
 
