@@ -1,0 +1,5 @@
+ &bands
+    prefix = 'GS'
+    outdir = './'
+    filband = 'bands.dat'
+ /
