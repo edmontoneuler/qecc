@@ -18,6 +18,7 @@ import sys
 
 def make_scf_param(filename, calculation = 'scf', prefix='GS', restart_mode = 'from_scratch', wf_collect = '.false.', pseudo_dir = '../PP/', outdir = './', verbosity ='high', tprnfor = '.true.', tstress= '.true.', diagonalization = 'david', mixing_beta = 0.7, conv_thr = 1e-12, ecutwfc = 110, ecutrho = 1320, occupations = 'fixed', noncolin = '.true.', lspinorb = '.true.', london = '.true.', nbnd = 20, nat = 2, ntyp = 2, ibrav = 0):
 
+
     f = open(filename, 'w+')
     f.write(' &control\n')
     f.write("   calculation     = '" + calculation + "'\n" )
@@ -41,6 +42,7 @@ def make_scf_param(filename, calculation = 'scf', prefix='GS', restart_mode = 'f
     f.write('   noncolin    = ' + noncolin + "\n" )
     f.write('   lspinorb    = ' + lspinorb + "\n" )
     f.write('   london      = ' + london + "\n" )
+    f.write("   occupations     = '" + occupations +"'\n" )
     f.write(' /\n')
     
     f.write(' &electrons\n')
