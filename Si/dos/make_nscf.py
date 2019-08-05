@@ -1,36 +1,22 @@
-""" make_nscf(): Creates a Quantum Espresso input file for a non self-consistent calculation
-
-"""
-import os
 import sys
-import re
-sys.path.insert(0, "/scratch/m/maassenj/cmrudder/bin")
+import os
+
+sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
+
+from diamond_struct_makers import make_bulk_Si
 from kpts_makers import make_auto_kpts
+from param_makers import make_scf_param
+from bash_makers import make_bash_beluga 
 
-def make_nscf(filename, nbnd = 100, tolvrs=1e-8,  kgrid = [51, 51, 51, 0,0,0], scf_inputfile = 'scf.in'):
+make_auto_kpts('KPTS', grid = [31, 31, 31, 0, 0, 0])
+make_bulk_Si('STRUCT')
+make_scf_param('PARAMS', conv_thr = 1e-10, calculation = 'nscf', ecutwfc = 60, ecutrho = 240, nat = 2, ntyp =1, nbnd = 20, occupations = 'tetrahedra')
+os.system('cat PARAMS STRUCT KPTS >> nscf.in')
+os.system('dos2unix nscf.in')
 
-    make_auto_kpts('KPTS', grid = kgrid)
+make_bash_beluga('nscf.sh', qe_inputfile = 'nscf.in', qe_outputfile = 'nscf.out', job_name = 'Si_nscf_dos', time = '00:30:00')
+os.system('sbatch nscf.sh')
 
-    with open(scf_inputfile, 'r') as scf_inputfile:
-        nscf_inputfile = open(filename, 'w')
-        for num, line in enumerate(scf_inputfile, 0):
-            if 'K_POINTS' in line:
-                break
-            if 'calculation' in line:
-                nscf_inputfile.write("    calculation = 'nscf' \n")
-            elif 'nbnd' in line:
-                nscf_inputfile.write("    nbnd = " +str(nbnd) +" \n")
-            elif 'tolvrs' in line:
-                nscf_inputfile.write("    tolvrs = " +str(tolvrs) +" \n")
-            else:
-                nscf_inputfile.write(line)
-        nscf_inputfile.close()
-        scf_inputfile.close()
-    
-    
-    os.system('cat KPTS >>' + filename)
-    os.system('dos2unix '+ filename)
+os.system('rm -f PARAMS STRUCT KPTS')
 
-if __name__ == "__main__":
-    filename = sys.argv[1]
-    make_nscf(filename)
+
