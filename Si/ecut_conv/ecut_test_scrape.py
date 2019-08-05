@@ -1,11 +1,11 @@
 import sys
 import os
 import numpy as np
-sys.path.insert(0, "/home/cmrudder/scratch/bin")
+sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
 
 from scf_scrape import get_scf_dict
 
-values = [5*k +40 for k in range(12)] #Taken from testing script
+values = [5*k +30 for k in range(8)]
 
 total_energies = []
 data_dir = 'test_data'     #Name of directory to store output files
