@@ -10,7 +10,7 @@ f.write("    prefix = 'GS'\n")
 f.write("    outdir = './'\n")
 f.write("    filband = 'dos.dat'\n")
 f.write("    Emin=-10, Emax = 30.0, DeltaE =0.02\n")
-f.write(' /') 
+f.write('/') 
 f.close()
 
 os.system('dos2unix dos.in')
