@@ -1,5 +1,6 @@
 import sys
 import os
+import numpy as np
 
 sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
 from scf_scrape import get_scf_dict
@@ -19,3 +20,6 @@ for k in range(len(values)):
 
 print('values = ', values)
 print('Total Energies =', total_energies)
+
+kpt_test_data = np.column_stack((values, total_energies))
+np.savetxt('kpt_test_data', kpt_test_data)
