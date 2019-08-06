@@ -1,16 +1,15 @@
 import sys
 import os
-sys.path.insert(0, "/scratch/m/maassenj/cmrudder/bin")
 
+sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
 from scf_scrape import get_scf_dict
 
-values = [5,7,9,11]# Numbers defining kpt grids used
+values = [5,7,9,11,13]# Numbers defining kpt grids used
 
 total_energies = []
 num_kpoints = []
-N = len(values)
 
-for k in range(N):
+for k in range(len(values)):
     iteration = 'k' + str(values[k])
     os.chdir(iteration)
     scf_dict = get_scf_dict('scf.out', iteration + '_pickle') #Saves data to pickle
