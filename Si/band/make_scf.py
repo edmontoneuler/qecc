@@ -14,7 +14,7 @@ make_scf_param('PARAMS', ecutwfc = 60, ecutrho = 240, nat = 2, ntyp =1, nbnd = 1
 os.system('cat PARAMS STRUCT KPTS >> scf.in')
 os.system('dos2unix scf.in')
 
-make_bash_beluga('scf.sh', job_name = 'Si_scf_test', time = '00:30:00')
+make_bash_beluga('scf.sh', job_name = 'Si_scf_band', time = '00:30:00')
 os.system('sbatch scf.sh')
 
 os.system('rm -f PARAMS STRUCT KPTS')
