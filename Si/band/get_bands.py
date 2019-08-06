@@ -1,14 +1,14 @@
 import sys
 import os
 
+sys.path.insert(0, "/home/cmrudder/scratch/qecc/bin")
 from bash_makers import make_bash_beluga 
 
 f = open('bands.in', 'w+')
-f.write(' &BANDS\n')
-f.write("    prefix = 'GS'\n")
-f.write("    outdir = './'\n")
-f.write("    filband = 'bands.dat'\n")
-f.write(' /') 
+f.write('&bands\n')
+f.write("   prefix = 'GS'\n")
+f.write("   filband = 'bands.dat'\n")
+f.write("/\n") 
 f.close()
 
 os.system('dos2unix bands.in')
