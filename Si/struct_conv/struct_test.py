@@ -7,15 +7,15 @@ from kpts_makers import make_auto_kpts
 from param_makers import make_scf_param
 from bash_makers import make_bash_beluga 
 
-values = [5,7,9,11,13]
-make_bulk_Si('STRUCT')
+values = [5.331 + 0.025*k for k in range(8)] #Lattice Parameter Values
+
+make_auto_kpts('KPTS', grid = [11, 11, 11, 0, 0, 0])
 make_scf_param('PARAMS', pseudo_dir = '../../PP/', ecutwfc = 60, ecutrho=240, nat = 2, ntyp = 1, nbnd = 16)
 
 for k in range(len(values)):
-    # New KPTS file for each job
-    iteration = 'k' + str(values[k])
+    iteration = 'alat' + str(values[k])
     os.system('mkdir ' + iteration)
-    make_auto_kpts('KPTS', grid = [values[k], values[k], values[k], 0, 0 ,0])
+    make_bulk_Si('STRUCT', a=values[k])
     os.system('cat PARAMS STRUCT KPTS >> scf.in')
     os.system('dos2unix scf.in')
     os.system('mv scf.in  ' + iteration)
