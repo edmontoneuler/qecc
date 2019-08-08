@@ -32,6 +32,19 @@ def make_2Dhex_bands(filename, npoints = 100):
     f.write('0.0    0.0    0.0    ' + str(npoints) + ' # G\n') #Gamma point
     f.close()
 
+def make_rhombo_bands(filename, npoints = 70):
+
+    f = open(filename, 'w+')
+    f.write('K_POINTS  crystal_b\n')
+    f.write('5\n')
+    f.write('0.0    0.0    0.0    ' + str(npoints) + ' # G\n') #Gamma point
+    f.write('0.5   -0.5    0.5    ' + str(npoints) + ' # Z\n') # Z point
+    f.write('0.5    -0.5    0.0    ' + str(npoints) + ' # F\n') #F point
+    f.write('0.0    0.0    0.0    ' + str(npoints) + ' # G\n') #Gamma point
+    f.write('0.5    0.0    0.0    ' + str(npoints) + ' # L\n') #L point
+    f.close()
+
+
 
 if __name__ == "__main__":
     filename = sys.argv[1]
