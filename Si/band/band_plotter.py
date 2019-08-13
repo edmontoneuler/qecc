@@ -55,9 +55,9 @@ def plot_bands(datafile= 'bands.dat.gnu',material_name = 'Si', bz_path = 'diamon
     my_data = np.genfromtxt(datafile)
     if bz_path == 'diamond':
         sym_labels = ['W', 'L', '$\Gamma$', 'X', 'W', 'K']
-    elif bz_path = '2D_hex':
+    elif bz_path == '2D_hex':
         sym_labels = ['$\Gamma$', 'K', 'M', '$\Gamma$']
-    elif bz_path = 'rhombo':
+    elif bz_path == 'rhombo':
         sym_labels = ['$\Gamma$', 'Z', 'F', '$\Gamma$', 'L']
     else: 
         print('Bandstructure path not recognized.')
