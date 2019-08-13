@@ -8,11 +8,11 @@ def make_Bi2Te3_QL(struc_filename, a = 4.383, vac_layer = 15, D1 = 1.70, D2 = 2.
     IL2 = D2/c
 
     #Atomic coordinates (x-y fixed by hex symmetries)
-    Te2a_coords = np.array([2/3, 1/3, IL1+IL2])
-    Bi1a_coords = np.array([1/3, 2/3, IL1])
+    Te2a_coords = np.array([2/3, 1/3, IL2+IL1])
+    Bi1a_coords = np.array([1/3, 2/3, IL2])
     Te1_coords  = np.array([0, 0, 0])
-    Bi1b_coords = np.array([2/3, 1/3, -IL1])
-    Te2b_coords = np.array([1/3, 2/3, -IL1 - IL2])
+    Bi1b_coords = np.array([2/3, 1/3, -IL2])
+    Te2b_coords = np.array([1/3, 2/3, -IL2 - IL1])
 
     #Randomly displace atomic coordinates
     Te2a_coords = Te2a_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
@@ -55,9 +55,9 @@ def make_Sb2Te3_QL(struc_filename, a = 4.25, vac_layer = 15, D1 = 1.70, D2 = 2.0
     
     #Atomic coordinates (x-y fixed by hex symmetries)
     Te2a_coords = np.array([2/3, 1/3, IL1+IL2])
-    Sb1a_coords = np.array([1/3, 2/3, IL1])
+    Sb1a_coords = np.array([1/3, 2/3, IL2])
     Te1_coords  = np.array([0, 0, 0])
-    Sb1b_coords = np.array([2/3, 1/3, -IL1])
+    Sb1b_coords = np.array([2/3, 1/3, -IL2])
     Te2b_coords = np.array([1/3, 2/3, -IL1 - IL2])
 
     #Randomly displace atomic coordinates
@@ -108,9 +108,9 @@ def make_Bi2Se3_QL(struc_filename, a = 4.138, vac_layer = 15, D1 = 1.78, D2 =1.9
     
     #Atomic coordinates (x-y fixed by hex symmetries)
     Se2a_coords = np.array([2/3, 1/3, IL1+IL2])
-    Bi1a_coords = np.array([1/3, 2/3, IL1])
+    Bi1a_coords = np.array([1/3, 2/3, IL2])
     Se1_coords =  np.array([0, 0, 0])
-    Bi1b_coords = np.array([2/3, 1/3, -IL1])
+    Bi1b_coords = np.array([2/3, 1/3, -IL2])
     Se2b_coords = np.array([1/3, 2/3, -IL1 - IL2])
 
     #Randomly displace atomic coordinates
