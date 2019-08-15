@@ -2,7 +2,7 @@ import numpy as np
 import sys 
 import random
 
-def make_Bi2Te3_QL(struc_filename, a = 4.383, vac_layer = 15, D1 = 1.70, D2 = 2.05, rand_disp = 0):
+def make_Bi2Te3_QL(struc_filename, a = 4.365, vac_layer = 15, D1 = 1.775, D2 = 2.05, rand_disp = 0):
     c = vac_layer + 2*D1 + 2*D2
     IL1 = D1/c
     IL2 = D2/c
