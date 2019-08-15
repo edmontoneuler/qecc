@@ -47,7 +47,7 @@ def make_Bi2Te3_QL(struc_filename, a = 4.365, vac_layer = 15, D1 = 1.775, D2 = 2
 
     f.close()
 
-def make_Sb2Te3_QL(struc_filename, a = 4.225, vac_layer = 15, D1 = 1.70, D2 = 2.05, rand_disp=0):
+def make_Sb2Te3_QL(struc_filename, a = 4.225, vac_layer = 15, D1 = 1.725, D2 = 1.99, rand_disp=0):
 
     c = vac_layer + 2*D1 + 2*D2
     IL1 = D1/c
@@ -101,7 +101,7 @@ def make_Sb2Te3_QL(struc_filename, a = 4.225, vac_layer = 15, D1 = 1.70, D2 = 2.
     f.close()
 
 
-def make_Bi2Se3_QL(struc_filename, a = 4.138, vac_layer = 15, D1 = 1.78, D2 =1.90, rand_disp=0):
+def make_Bi2Se3_QL(struc_filename, a = 4.0625, vac_layer = 15, D1 = 1.78, D2 =1.90, rand_disp=0):
     c = vac_layer + 2*D1 + 2*D2
     IL1 = D1/c
     IL2 = D2/c
