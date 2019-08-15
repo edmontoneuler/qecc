@@ -114,11 +114,11 @@ def make_Bi2Se3_QL(struc_filename, a = 4.138, vac_layer = 15, D1 = 1.78, D2 =1.9
     Se2b_coords = np.array([1/3, 2/3, -IL1 - IL2])
 
     #Randomly displace atomic coordinates
-    Se2a_coords = Te2a_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
+    Se2a_coords = Se2a_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
     Bi1a_coords = Bi1a_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
-    Se1_coords  = Te1_coords #+ rand_disp*np.array([random.uniform(0,1) for k in range(3)])
+    Se1_coords  = Se1_coords #+ rand_disp*np.array([random.uniform(0,1) for k in range(3)])
     Bi1b_coords = Bi1b_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
-    Se2b_coords = Te2b_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
+    Se2b_coords = Se2b_coords + rand_disp*np.array([random.uniform(0,1) for k in range(3)])
 
     #Lattice vectors (Hexagonal)
     v1 = [a, 0, 0]

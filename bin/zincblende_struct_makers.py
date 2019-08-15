@@ -10,8 +10,8 @@ def make_bulk_GaAs(struc_filename, a = 5.6535):
     f = open(struc_filename, 'w+')
     
     f.write('ATOMIC_SPECIES\n')
-    f.write('Ga 69.72300 Ga.pbe-hgh.UPF\n')
-    f.write('As 74.92160 As.pbe-hgh.UPF\n')
+    f.write('Ga 69.72300 Ga.rel-pbe-dn-kjpaw_psl.1.0.0.UPF\n')
+    f.write('As 74.92160 As.rel-pbe-n-kjpaw_psl.1.0.0.UPF\n')
     f.write('\n')
     
     f.write('CELL_PARAMETERS (angstrom)\n')
