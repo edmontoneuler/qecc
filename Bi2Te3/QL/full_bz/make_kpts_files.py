@@ -142,6 +142,11 @@ def get_kpts_files(A_hex, A_cart, nkx, nky, nkz, kpts_per_file):
     print(len(gamma_cell))
     print(len(folded_cell))
 
+    gamma_array = np.reshape(gamma_cell, (len(gamma_cell), 3))
+    folded_array = np.reshape(folded_cell, (len(folded_cell), 3))
+
+    np.savez('CELL_BZ_KPOINTS', gamma_array = gamma_array, folded_array = folded_array) #Save k-point lists
+
     #Determine number of files needed
     full_bz = np.concatenate((gamma_cell, folded_cell))
     num_points = len(full_bz)
@@ -151,24 +156,26 @@ def get_kpts_files(A_hex, A_cart, nkx, nky, nkz, kpts_per_file):
     for k in range(int(num_files)-1):
         filename = 'KPTS' + str(k)
         f = open(filename, 'w+')
-        f.write('K_POINTS  crystal_b\n')
+        f.write('K_POINTS  crystal\n')
         f.write(str(kpts_per_file)+'\n')
         for n in range(kpts_per_file):
             kpoint = np.dot(cart2hex, full_bz[k*kpts_per_file + n])
-            f.write(str(kpoint[0]) + '    ' + str(kpoint[1]) + '    '  + str(kpoint[2]) + '\n')
+            f.write(str(kpoint[0]) + '    ' + str(kpoint[1]) + '    '  + str(kpoint[2]) + '    1 \n')
+        f.write('\n')
         f.close()
 
     #Last file is overwhelmingly likely to have a different number of points 
 
     f = open('KPTS' + str(int(num_files)-1), 'w+') # Python indexing
     points_left = int(num_points - (num_files-1)*kpts_per_file)
-    f.write('K_POINTS  crystal_b\n')
+    f.write('K_POINTS  crystal\n')
     f.write(str(points_left)+'\n')
     for n in range(points_left):
         kpoint = np.dot(cart2hex, full_bz[int((num_files-1)*kpts_per_file +n)])
-        f.write(str(kpoint[0]) + '    ' + str(kpoint[1]) + '    '  + str(kpoint[2]) + '\n')
+        f.write(str(kpoint[0]) + '    ' + str(kpoint[1]) + '    '  + str(kpoint[2]) + '    1 \n')
+    f.write('\n')
     f.close() 
 
-get_kpts_files(A_hex, A_cart, 115, 85, 1, 5000)
+get_kpts_files(A_hex, A_cart, 85, 45, 1, 1000)
 
 
