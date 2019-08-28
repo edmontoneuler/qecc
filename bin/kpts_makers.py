@@ -32,6 +32,17 @@ def make_2Dhex_bands(filename, npoints = 100):
     f.write('0.0    0.0    0.0    ' + str(npoints) + ' # G\n') #Gamma point
     f.close()
 
+def make_QL_bands(filename, npoints = 100):
+
+    f = open(filename, 'w+')
+    f.write('K_POINTS  crystal_b\n')
+    f.write('3\n')
+    f.write('0.3333 0.3333 0.0    ' + str(npoints) + ' # K\n') #K point
+    f.write('0.0    0.0    0.0    ' + str(npoints) + ' # G\n') #Gamma point
+    f.write('0.5    0.0    0.0    ' + str(npoints) + ' # M\n') #M point
+    f.close()
+
+
 def make_rhombo_bands(filename, npoints = 70):
 
     f = open(filename, 'w+')
